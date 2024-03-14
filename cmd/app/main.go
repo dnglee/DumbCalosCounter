@@ -1,8 +1,7 @@
 package main
 
 import (
-	dataRepository "DumbCalos/internal/app/data"
-	handlers "DumbCalos/internal/app/http"
+	handlers "DumbCalos/internal/app/http/handlers"
 	"database/sql"
 	"log"
 	"net/http"
@@ -19,7 +18,7 @@ var db *sql.DB
 func main() {
 
 	errEnv := godotenv.Load("config.env")
-
+	httpClient := &http.Client{}
 	if errEnv != nil {
 		log.Fatal(errEnv)
 	}
@@ -32,12 +31,19 @@ func main() {
 		log.Fatal(errDB)
 	}
 
-	dataRepository.InitiatlizeDB(db)
+	foodHandler := handlers.FoodHandler{
+		DB:         db,
+		HttpClient: httpClient,
+	}
+
+	// dataRepository.InitiatlizeDB(db)
 
 	router := mux.NewRouter()
 	router.Use(SetJSONContentTypeMiddleware)
-	router.HandleFunc("/api/foods/", handlers.GetFoods).Methods("GET")
-	router.HandleFunc("/api/addFodds/", handlers.AddFoods).Methods("POST")
+	foodHandler.RegisterRouter(router)
+	// router.HandleFunc("/api/foods/", handlers.GetFoods).Methods("GET")
+	// router.HandleFunc("/api/addFodds/", handlers.AddFoods).Methods("POST")
+	// router.HandleFunc("/api/getFoodsByDate/", handlers.GetFoodsByDate).Methods("GET")
 
 	http.ListenAndServe(":8080", router)
 }

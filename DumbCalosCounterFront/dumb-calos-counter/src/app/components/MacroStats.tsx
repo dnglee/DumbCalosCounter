@@ -58,7 +58,7 @@ const MacroStats = () => {
     } 
 
     return (
-      <div className="stats stats-vertical lg:stats-horizontal shadow">
+      <div className="stats bg-neutral stats-vertical lg:stats-horizontal shadow">
   
         <div className="stat">
           <div className="stat-title">Protein</div>

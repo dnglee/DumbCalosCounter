@@ -10,7 +10,7 @@ export default function Home() {
     <div className="bg-base-100 drawer lg:drawer-open">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
-        <div className="flex min-h-screen items-start justify-right p-24">
+        <div className="flex min-h-screen items-start justify-center p-24">
           <MacroStats></MacroStats>
         </div>
       </div> 
