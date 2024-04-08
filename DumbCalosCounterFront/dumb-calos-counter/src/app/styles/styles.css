@@ -10,3 +10,17 @@ main {
   .MacroStats {
     flex: 1; /* Take up remaining space */
   }
+
+    /* Container 3 */
+  .Container {
+      position: absolute;
+      top: 104px;
+      left: 32px;
+      width: 1088px;
+      height: 356px;
+      background: #F8F9FAFF;
+      border-radius: 0px;
+      border-width: 1px;
+      border-color: #F3F4F6FF;
+      border-style: solid;
+    }

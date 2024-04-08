@@ -14,7 +14,7 @@ func InitiatlizeDB(inDB *sql.DB) {
 
 func GetFoods() ([]models.Food, error) {
 
-	rows, err := db.Query("SELECT Name, Calories, Protein, Carbs, Fats, date_food_added FROM dbo.tbl_foods")
+	rows, err := db.Query("SELECT Fd_id, Name, Calories, Protein, Carbs, Fats, date_food_added FROM dbo.tbl_foods")
 	if err != nil {
 		return nil, err
 	}
@@ -25,7 +25,7 @@ func GetFoods() ([]models.Food, error) {
 	for rows.Next() {
 		var qFood models.Food
 
-		err := rows.Scan(&qFood.Name, &qFood.Calories, &qFood.Protein, &qFood.Carbs, &qFood.Fats, &qFood.Date_Food_Added)
+		err := rows.Scan(&qFood.Fd_id, &qFood.Name, &qFood.Calories, &qFood.Protein, &qFood.Carbs, &qFood.Fats, &qFood.Date_Food_Added)
 
 		if err != nil {
 			return nil, err

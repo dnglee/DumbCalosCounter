@@ -6,6 +6,7 @@ import (
 )
 
 type Food struct {
+	Fd_id           int       `json:"fd_id"`
 	Name            string    `json:"name"`
 	Calories        int       `json:"calories"`
 	Protein         int       `json:"protein"`

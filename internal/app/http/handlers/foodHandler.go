@@ -22,7 +22,7 @@ type FoodHandler struct {
 
 func (fc *FoodHandler) RegisterRouter(r *mux.Router) {
 	r.HandleFunc("/api/foods/", fc.GetFoods()).Methods("GET")
-	r.HandleFunc("/api/addFodds/", fc.AddFoods()).Methods("POST")
+	r.HandleFunc("/api/addFoods/", fc.AddFoods()).Methods("POST")
 	r.HandleFunc("/api/getFoodsByDate/", fc.GetFoodsByDate()).Methods("GET")
 }
 
@@ -76,6 +76,7 @@ func (fc *FoodHandler) AddFoods() http.HandlerFunc {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
 		}
+		fmt.Println(newFood)
 		dataRepository.InitiatlizeDB(fc.DB)
 		dataRepository.AddFoods(newFood)
 
